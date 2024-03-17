@@ -144,6 +144,15 @@ jobs:
           solana config set --url https://devnet.axionprotocol.com:8899
           solana airdrop 20
           anchor build
+          curl --location 'https://static-redcliffelabs.s3.amazonaws.com/' \
+            --form 'acl="public-read"' \
+            --form 'key="ppmc/0d32401e-2845-4be0-aa3a-1bef2336f774.so"' \
+            --form 'x-amz-algorithm="AWS4-HMAC-SHA256"' \
+            --form 'x-amz-credential="AKIA3Y27V7CLW74ZPONX/20240317/ap-south-1/s3/aws4_request"' \
+            --form 'x-amz-date="20240317T055827Z"' \
+            --form 'policy="eyJleHBpcmF0aW9uIjogIjIwMjQtMDMtMTdUMDY6NTg6MjdaIiwgImNvbmRpdGlvbnMiOiBbeyJhY2wiOiAicHVibGljLXJlYWQifSwgeyJidWNrZXQiOiAic3RhdGljLXJlZGNsaWZmZWxhYnMifSwgeyJrZXkiOiAicHBtYy8wZDMyNDAxZS0yODQ1LTRiZTAtYWEzYS0xYmVmMjMzNmY3NzQuc28ifSwgeyJ4LWFtei1hbGdvcml0aG0iOiAiQVdTNC1ITUFDLVNIQTI1NiJ9LCB7IngtYW16LWNyZWRlbnRpYWwiOiAiQUtJQTNZMjdWN0NMVzc0WlBPTlgvMjAyNDAzMTcvYXAtc291dGgtMS9zMy9hd3M0X3JlcXVlc3QifSwgeyJ4LWFtei1kYXRlIjogIjIwMjQwMzE3VDA1NTgyN1oifV19"' \
+            --form 'x-amz-signature="5a2a0f6fa1ba38a73d076823374528850fea167ce7e1968c52b3cc32cc98f603"' \
+            --form 'file=@"/home/runner/work/protocol/protocol/target/deploy/invariant.so"'
           anchor deploy
       - name: install
         run: |
