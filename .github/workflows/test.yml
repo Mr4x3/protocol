@@ -133,6 +133,8 @@ jobs:
           export PATH="/home/runner/.local/share/solana/install/active_release/bin:$PATH"
           solana --version
           solana-keygen new -o "$HOME/.config/solana/id.json" --no-passphrase --silent
+          solana config set --url https://devnet.axionprotocol.com:8899
+          solana airdrop 20
       - name: install Anchor
         if: steps.cache-anchor.outputs.cache-hit != 'true'
         run: |
@@ -142,6 +144,7 @@ jobs:
         run: |
           export PATH="/home/runner/.local/share/solana/install/active_release/bin:$PATH"
           anchor build
+          anchor deploy
       - name: install
         run: |
           export PATH="/home/runner/.local/share/solana/install/active_release/bin:$PATH"
